@@ -1,7 +1,7 @@
 import './App.css';
 import io from "socket.io-client"
-import { nanoid }  from "nanoid";
-import { useState,useEffect } from 'react'
+import { useState } from 'react'
+import Chat from './Chat';
 
 const socket = io.connect('http://localhost:5000/')
 
@@ -16,8 +16,8 @@ function App() {
     }
   }
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App-header">
+      <header>
         <h1> Join A Chat</h1>
         <form onSubmit={joinRoom}> 
           <input 
@@ -34,6 +34,7 @@ function App() {
           <button>Join Room</button>
         </form>
       </header>
+      <Chat socket={socket} username={username} room={room} />
     </div>
   );
 }
